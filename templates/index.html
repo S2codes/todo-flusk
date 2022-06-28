@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+{% block body %}
+<h1 class="text-center mt-3">Learn Flask - Todo App</h1>
+<div class="container p-3">
+    <form action="/" method="post">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" name="title" id="title" class="form-control mb-3" placeholder="Enter Your Title">
+        <label for="note" class="form-label">Note</label>
+        <textarea name="note" id="note" cols="30" rows="4" class="form-control"
+            placeholder="Write Your Note"></textarea>
+
+        <button class="btn btn-primary mt-4">Add Note</button>
+    </form>
+</div>
+
+<div class="container mt-3">
+    <h3>Your Notes</h3>
+
+    {% if allTodo|length == 0 %}
+    <div class="alert alert-warning" role="alert">
+        No Record Found. Add Your First Note
+    </div>
+    {% else %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in allTodo %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{todo.title}}</td>
+                <td>{{todo.decs}}</td>
+                <td>{{todo.date_created}}</td>
+                <td>
+                    <a href="/update/{{todo.sno}}" class="btn btn-sm btn-outline-primary">Update</a>
+                    <a href="/delete/{{todo.sno}}" class="btn btn-sm btn-danger ms-2">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+
+
+</div>
+
+
+
+{% endblock body %}

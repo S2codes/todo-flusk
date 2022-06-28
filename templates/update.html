@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Update {% endblock title %}
+{% block body %}
+<h1 class="text-center mt-3">Update - Todo App</h1>
+<div class="container p-3">
+    <form action="/update/{{updateTodo.sno}}" method="post">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" name="title" id="title" class="form-control mb-3" placeholder="Enter Your Title" value="{{updateTodo.title}}">
+        <label for="note" class="form-label">Note</label>
+        <textarea name="note" id="note" cols="30" rows="4" class="form-control"
+            placeholder="Write Your Note">{{updateTodo.decs}}</textarea>
+
+        <button class="btn btn-primary mt-4">Update Note</button>
+    </form>
+</div>
+
+
+{% endblock body %}
